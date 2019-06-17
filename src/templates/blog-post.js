@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
+import blogPostStyles from '../styles/blog-post.module.scss';
 import Layout from '../components/layout';
 import Head from '../components/head';
 import Panel from '../components/panel';
@@ -28,11 +29,11 @@ class Translations extends React.Component {
       let { translations, lang, languageLink } = this.props;
   
       return (
-        <div className="translations">
+        <div className={blogPostStyles.translations}>
           <Panel>
             {translations.length > 0 && (
-              <span>
-                <span>You can also read this article in: </span>
+              <p>
+                <span>You can also read this article in </span>
                 {translations.map((translationLang, i) => (
                   <React.Fragment key={translationLang}>
                     {translationLang === lang ? (
@@ -40,17 +41,16 @@ class Translations extends React.Component {
                     ) : (
                       <Link to={languageLink(translationLang)}>{codeToLanguage(translationLang)}</Link>
                     )}
-                    {i === translations.length - 1 ? '' : ', '}
+                    {i === translations.length - 1 ? '.' : ', '}
                   </React.Fragment>
                 ))}
-              </span>
+              </p>
             )}
             {lang !== 'en' && (
-              <>
-                <br />
+              <p>
                 <span>View all posts in </span>
-                <Link to={`/blog/${lang}`}>{codeToLanguage(lang)}</Link>
-              </>
+                <Link to={`/blog/${lang}`}>{codeToLanguage(lang)}</Link>.
+              </p>
             )}
           </Panel>
         </div>
