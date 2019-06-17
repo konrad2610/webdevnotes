@@ -32,7 +32,6 @@ const BlogPage = (props) => {
     return (
         <Layout>
             <Head title="Blog"/>
-            <h1>Blog Page</h1>
             <ol className={blogStyles.posts}>
                 {props.data.allMarkdownRemark.edges.map((post) => {
                     return (
